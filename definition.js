@@ -1,5 +1,5 @@
 const ColorBlock = '#cb2026';
-const ImgUrl = 'https://github.com/truongphat230799/yolobit_extension_mecanum/tree/main/images';
+const ImgUrl = 'https://github.com/truongphat230799/yolobit_extension_mecanum/blob/main/images/';
 Blockly.Blocks['i2c_motor_driver'] = {
     init: function () {
       this.jsonInit(
@@ -395,21 +395,20 @@ Blockly.Python["mecanum_line_sensor_read_single"] = function (block) {
    * Block for waiting.
    * @this Blockly.Block
    */
-  init: function() {
+  init: function () {
     this.jsonInit(
       {
         "type": "mecanum_ultrasonic_create",
-        "message0": Blockly.Msg.BLOCK_ULTRASONIC_CREATE_MESSAGE0,
+        "message0": "%3 khởi tạo cảm biến khoảng cách với chân trigger %1 chân echo %2",
         "args0": [
-          {
-            "type": "field_variable",
-            "name": "ultrasonic_sensor",
-            "variable": Blockly.Msg.BLOCK_ULTRASONIC_CREATE_MESSAGE1
-          },
           {
             "type": "field_dropdown",
             "name": "TRG",
             "options": [
+              [
+                "P3",
+                "pin3"
+              ],
               [
                 "P0",
                 "pin0"
@@ -421,10 +420,6 @@ Blockly.Python["mecanum_line_sensor_read_single"] = function (block) {
               [
                 "P2",
                 "pin2"
-              ],
-              [
-                "P3",
-                "pin3"
               ],
               [
                 "P4",
@@ -493,6 +488,10 @@ Blockly.Python["mecanum_line_sensor_read_single"] = function (block) {
             "name": "ECH",
             "options": [
               [
+                "P6",
+                "pin6"
+              ],
+              [
                 "P0",
                 "pin0"
               ],
@@ -515,10 +514,6 @@ Blockly.Python["mecanum_line_sensor_read_single"] = function (block) {
               [
                 "P5",
                 "pin5"
-              ],
-              [
-                "P6",
-                "pin6"
               ],
               [
                 "P7",
@@ -569,41 +564,46 @@ Blockly.Python["mecanum_line_sensor_read_single"] = function (block) {
                 "pin20"
               ]
             ]
+          },
+          {
+            "type": "field_image",
+            "src": ImgUrl + 'ultrasonic.png',
+            "width": 20,
+            "height": 20,
+            "alt": "*",
+            "flipRtl": false
           }
         ],
         "previousStatement": null,
         "nextStatement": null,
         "colour": ColorBlock,
-        "tooltip": Blockly.Msg.BLOCK_ULTRASONIC_CREATE_TOOLTIP,
-        "helpUrl": Blockly.Msg.BLOCK_ULTRASONIC_CREATE_HELPURL
+        "tooltip": "Khởi tạo cảm biến khoảng cách với 2 chân cắm Trigger và Echo được chọn",
+        "helpUrl": ""
       }
     );
+  },
+  getDeveloperVars: function () {
+    return ['mecanum_ultrasonic'];
   }
 };
 
-Blockly.Python['mecanum_ultrasonic_create'] = function(block) {
-  var variable_ultrasonic_sensor = Blockly.Python.variableDB_.getName(block.getFieldValue('ultrasonic_sensor'), Blockly.Variables.NAME_TYPE);
+Blockly.Python['mecanum_ultrasonic_create'] = function (block) {
   var dropdown_trg = block.getFieldValue('TRG');
   var dropdown_ech = block.getFieldValue('ECH');
   // TODO: Assemble Python into code variable.
   Blockly.Python.definitions_['import_yolobit'] = 'from yolobit import *';
-  Blockly.Python.definitions_['import_ultrasonic'] = 'from mecanum_hsr04 import HCSR04';
-  var code = variable_ultrasonic_sensor + ' = HCSR04(trigger_pin=' + dropdown_trg + '.pin, echo_pin=' + dropdown_ech + '.pin)\n';
+  Blockly.Python.definitions_['import_ultrasonic'] = 'from aiot_hcsr04 import HCSR04';
+  var code = 'mecanum_ultrasonic = HCSR04(trigger_pin=' + dropdown_trg + '.pin, echo_pin=' + dropdown_ech + '.pin)\n';
   return code;
 };
 
 Blockly.Blocks['mecanum_ultrasonic_read'] = {
-  init: function() {
+  init: function () {
     this.jsonInit(
       {
         "type": "mecanum_ultrasonic_read",
-        "message0": Blockly.Msg.BLOCK_ULTRASONIC_READ_MESSAGE0,
+        "message0": "%2 đọc cảm biến khoảng cách theo %1",
         "args0": [
-          {
-            "type": "field_variable",
-            "name": "ultrasonic_sensor",
-            "variable": Blockly.Msg.BLOCK_ULTRASONIC_CREATE_MESSAGE1
-          },
           {
             "type": "field_dropdown",
             "name": "TYPE",
@@ -617,43 +617,48 @@ Blockly.Blocks['mecanum_ultrasonic_read'] = {
                 "MM"
               ]
             ]
+          },
+          {
+            "type": "field_image",
+            "src": ImgUrl + 'ultrasonic.png',
+            "width": 20,
+            "height": 20,
+            "alt": "*",
+            "flipRtl": false
           }
         ],
         "output": null,
         "colour": ColorBlock,
-        "tooltip": Blockly.Msg.BLOCK_ULTRASONIC_READ_TOOLTIP,
-        "helpUrl": Blockly.Msg.BLOCK_ULTRASONIC_READ_HELPURL
+        "tooltip": "Đọc giá trị đo được của cảm biến khoảng cách",
+        "helpUrl": ""
       }
     );
+  },
+  getDeveloperVars: function () {
+    return ['mecanum_ultrasonic'];
   }
 };
 
-Blockly.Python['mecanum_ultrasonic_read'] = function(block) {
-  var variable_ultrasonic_sensor = Blockly.Python.variableDB_.getName(block.getFieldValue('ultrasonic_sensor'), Blockly.Variables.NAME_TYPE);
+Blockly.Python['mecanum_ultrasonic_read'] = function (block) {
   var dropdown_type = block.getFieldValue('TYPE');
   // TODO: Assemble Python into code variable.
   var code = '';
   if (dropdown_type == 'CM') {
-    code = variable_ultrasonic_sensor + '.distance_cm()';
+    code = 'mecanum_ultrasonic.distance_cm()';
   } else {
-    code = variable_ultrasonic_sensor + '.distance_mm()';
+    code = 'mecanum_ultrasonic.distance_mm()';
   }
   // TODO: Change ORDER_NONE to the correct strength.
   return [code, Blockly.Python.ORDER_NONE];
 };
 
 Blockly.Blocks['mecanum_ultrasonic_checkdistance'] = {
-  init: function() {
+  init: function () {
     this.jsonInit(
       {
         "type": "mecanum_ultrasonic_checkdistance",
-        "message0": Blockly.Msg.BLOCK_ULTRASONIC_CHECK_MESSAGE0,
+        "message0": "cảm biến khoảng cách đọc được < %1 %2 %3",
         "args0": [
-          {
-            "type": "field_variable",
-            "name": "ultrasonic_sensor",
-            "variable": Blockly.Msg.BLOCK_ULTRASONIC_CREATE_MESSAGE1
-          },
           {
             "type": "input_dummy"
           },
@@ -679,23 +684,25 @@ Blockly.Blocks['mecanum_ultrasonic_checkdistance'] = {
         ],
         "output": "Boolean",
         "colour": ColorBlock,
-        "tooltip": Blockly.Msg.BLOCK_ULTRASONIC_CHECK_TOOLTIP,
-        "helpUrl": Blockly.Msg.BLOCK_ULTRASONIC_CHECK_HELPURL
+        "tooltip": "Kiểm tra xem khoảng cách đo được của cảm biến có lớn hơn giá trị được chọn hay không",
+        "helpUrl": ""
       }
     );
+  },
+  getDeveloperVars: function () {
+    return ['aiot_ultrasonic'];
   }
 };
 
-Blockly.Python['mecanum_ultrasonic_checkdistance'] = function(block) {
-  var variable_ultrasonic_sensor = Blockly.Python.variableDB_.getName(block.getFieldValue('ultrasonic_sensor'), Blockly.Variables.NAME_TYPE);
+Blockly.Python['mecanum_ultrasonic_checkdistance'] = function (block) {
   var value_distance = Blockly.Python.valueToCode(block, 'DISTANCE', Blockly.Python.ORDER_ATOMIC);
   var dropdown_type = block.getFieldValue('TYPE');
   // TODO: Assemble Python into code variable.
   var code = '';
   if (dropdown_type == 'CM')
-    code = variable_ultrasonic_sensor + '.distance_cm() < ' + value_distance;
+    code = 'mecanum_ultrasonic.distance_cm() < ' + value_distance;
   else
-    code = variable_ultrasonic_sensor + '.distance_mm()' + value_distance;
+    code = 'mecanum_ultrasonic.distance_mm() < ' + value_distance;
   // TODO: Change ORDER_NONE to the correct strength.
   return [code, Blockly.Python.ORDER_NONE];
 };
