@@ -1,5 +1,5 @@
 const ColorBlock = '#cb2026';
-const ImgUrl = 'https://github.com/truongphat230799/yolobit_extension_mecanum/tree/main/images/';
+const ImgUrl = 'https://github.com/truongphat230799/yolobit_extension_mecanum/tree/main/images';
 Blockly.Blocks['i2c_motor_driver'] = {
     init: function () {
       this.jsonInit(
@@ -182,7 +182,7 @@ Blockly.Python["i2c_move_motor"] = function (block) {
 Blockly.Blocks['mecanum_stop'] = {
   init: function () {
     this.jsonInit({
-      "type": "rover_stop",
+      "type": "mecanum_stop",
       "message0": "%1 dừng di chuyển",
       "args0": [
         {
@@ -203,7 +203,7 @@ Blockly.Blocks['mecanum_stop'] = {
   }
 };
 
-Blockly.Python["rover_stop"] = function (block) {
+Blockly.Python["mecanum_stop"] = function (block) {
   Blockly.Python.definitions_['import_display'] = 'from yolobit import *';
   Blockly.Python.definitions_['import_machine'] = 'import machine';
   Blockly.Python.definitions_['import_motor_driver'] = 'from i2c_motor_driver import MotorDriver4Channel';
@@ -336,7 +336,7 @@ Blockly.Blocks['mecanum_line_sensor_read_all'] = {
 };
 
 Blockly.Python["mecanum_line_sensor_read_all"] = function (block) {
-  Blockly.Python.definitions_['import_rover'] = 'from mecanum import *';
+  Blockly.Python.definitions_['import_mecanum'] = 'from mecanum import *';
   var S1 = block.getFieldValue("S1");
   var S2 = block.getFieldValue("S2");
   var S3 = block.getFieldValue("S3");
@@ -383,7 +383,7 @@ Blockly.Blocks['mecanum_line_sensor_read_single'] = {
 };
 
 Blockly.Python["mecanum_line_sensor_read_single"] = function (block) {
-  Blockly.Python.definitions_['import_rover'] = 'from mecanum import *';
+  Blockly.Python.definitions_['import_mecanum'] = 'from mecanum import *';
   var pin = block.getFieldValue("pin");
   // TODO: Assemble Python into code variable.
   var code = "mecanum.read_line_sensors(" + pin + ")";

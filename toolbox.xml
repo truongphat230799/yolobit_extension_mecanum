@@ -41,6 +41,7 @@
         </shadow>
       </value>
     </block>
+    <block type="mecanum_stop" />
     <block type="mecanum_line_sensor_read_all" />
     <block type="mecanum_line_sensor_read_single" />
     <block type="mecanum_ultrasonic_create"/>
