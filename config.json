@@ -1,0 +1,14 @@
+{
+    "name": "MOTOR DRIVER",
+    "description": "Mục mở rộng của Yolo:Bit dùng cho module Motor driver",
+    "libs": [
+        "i2c_motor_driver.py"
+    ],
+    "blocks": [
+        "definition.js"
+    ],
+    "toolbox": "toolbox.xml",
+    "languages": {
+    },
+    "poster": "poster.png"
+}
