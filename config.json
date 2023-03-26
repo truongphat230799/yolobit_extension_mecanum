@@ -1,5 +1,5 @@
 {
-    "name": "Mecanum Robot",
+    "name": "Mecanum",
     "description": "Mục mở rộng của Yolo:Bit dùng cho module Mecanum Robot",
     "libs": [
         "i2c_motor_driver.py", "line_array.py", "mecanum_hsr04.py", "mecanum.py"
