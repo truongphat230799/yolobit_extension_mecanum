@@ -1,5 +1,5 @@
 const ColorBlock = '#cb2026';
-const ImgUrl = 'https://github.com/truongphat230799/yolobit_extension_mecanum/blob/main/images/';
+const ImgUrl = 'https://ohstem-public.s3.ap-southeast-1.amazonaws.com/extensions/AITT-VN/yolobit_extension_rover/images/';
 Blockly.Blocks['i2c_motor_driver'] = {
     init: function () {
       this.jsonInit(
