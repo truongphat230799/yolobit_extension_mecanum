@@ -240,7 +240,7 @@ Blockly.Blocks['mecanum_line_sensor_read_all'] = {
                   "height": 15,
                   "alt": "none"
                 },
-                "1"
+                "0"
               ],
               [
                 {
@@ -249,7 +249,7 @@ Blockly.Blocks['mecanum_line_sensor_read_all'] = {
                   "height": 15,
                   "alt": "detect"
                 },
-                "0"
+                "1"
               ]
             ]
           },
@@ -264,7 +264,7 @@ Blockly.Blocks['mecanum_line_sensor_read_all'] = {
                   "height": 15,
                   "alt": "none"
                 },
-                "1"
+                "0"
               ],
               [
                 {
@@ -273,7 +273,7 @@ Blockly.Blocks['mecanum_line_sensor_read_all'] = {
                   "height": 15,
                   "alt": "detect"
                 },
-                "0"
+                "1"
               ]
             ]
           },
@@ -288,7 +288,7 @@ Blockly.Blocks['mecanum_line_sensor_read_all'] = {
                   "height": 15,
                   "alt": "none"
                 },
-                "1"
+                "0"
               ],
               [
                 {
@@ -297,7 +297,7 @@ Blockly.Blocks['mecanum_line_sensor_read_all'] = {
                   "height": 15,
                   "alt": "detect"
                 },
-                "0"
+                "1"
               ]
             ]
           },
@@ -312,7 +312,7 @@ Blockly.Blocks['mecanum_line_sensor_read_all'] = {
                   "height": 15,
                   "alt": "none"
                 },
-                "1"
+                "0"
               ],
               [
                 {
@@ -321,7 +321,7 @@ Blockly.Blocks['mecanum_line_sensor_read_all'] = {
                   "height": 15,
                   "alt": "detect"
                 },
-                "0"
+                "1"
               ]
             ]
           }
