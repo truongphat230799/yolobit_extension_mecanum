@@ -1,13 +1,13 @@
 <xml xmlns="https://developers.google.com/blockly/xml" id="toolbox" style="display: none">
   <category name="Mecanum" colour="#cb2026" icon="road">
-    <block type="i2c_motor_driver">
+    <block type="i2c_dc_motor_driver">
         <value name="speed">
             <shadow type="math_number">
                 <field name="NUM">50</field>
             </shadow>
         </value>
     </block>
-    <block type="i2c_motor_delay">
+    <block type="i2c_dc_motor_delay">
       <value name="speed">
         <shadow type="math_number">
           <field name="NUM">50</field>
@@ -19,7 +19,7 @@
         </shadow>
       </value>
     </block>
-    <block type="i2c_move_motor">
+    <block type="i2c_dc_move_motor">
       <value name="motor1">
         <shadow type="math_number">
           <field name="NUM">50</field>
